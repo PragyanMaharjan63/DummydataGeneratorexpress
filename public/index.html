@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dummy data generator</title>
+  </head>
+  <body>
+    <h1>welcome to dummy data generator</h1>
+    <button id="gen">Generate</button>
+    <div id="result"></div>
+    <script>
+      let btn = document.getElementById("gen");
+      let render = document.getElementById("result");
+      btn.addEventListener("click", async () => {
+        try {
+          let toPost = await fetch("/generate", { method: "POST" });
+          let res = await toPost.json();
+          render.innerHTML = render.innerHTML + "generated <br>";
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    </script>
+  </body>
+</html>
